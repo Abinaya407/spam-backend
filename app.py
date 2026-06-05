@@ -5,16 +5,16 @@ import joblib
 
 app = FastAPI()
 
-# Allow frontend connection
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost:3000",
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Load trained model
 model = joblib.load("spam_model.pkl")
 
 
@@ -29,7 +29,6 @@ def home():
 
 @app.post("/predict")
 def predict(data: EmailRequest):
-
     prediction = model.predict([data.text])[0]
     prob = model.predict_proba([data.text])[0]
 
