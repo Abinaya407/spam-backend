@@ -33,6 +33,9 @@ def predict(data: EmailRequest):
     prediction = model.predict([data.text])[0]
     prob = model.predict_proba([data.text])[0]
 
+    print("Prediction:", prediction)
+    print("Probabilities:", prob)
+    
     status = "spam" if prediction == 1 else "safe"
     percentage = round(max(prob) * 100)
 
