@@ -9,6 +9,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
+        "https://spam-frontend-one.vercel.app"
     ],
     allow_credentials=False,
     allow_methods=["*"],
